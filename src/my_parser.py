@@ -13,7 +13,6 @@ class Parser:
         with open('facebook_group_members1.html', 'w', encoding='utf-8') as f:
             for member in members:
                 f.write(member.prettify() + '\n')
-
     def get_group_members(self):
         members = self.soup.find_all('div', {'data-visualcompletion': 'ignore-dynamic'})
         #kiểm tra xem có bao nhiêu phần tử trong mảng members

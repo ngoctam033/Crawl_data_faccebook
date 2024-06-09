@@ -44,6 +44,7 @@ class Scraper:
     
         # Click vào nút đăng nhập
         login_button.click()
+
     def get_page_html(self):
             # Sử dụng JavaScript để lấy nội dung HTML hiện tại của trang web
             html = self.driver.execute_script("return document.documentElement.outerHTML;")
@@ -86,27 +87,6 @@ class Scraper:
             print(f"An error occurred: {e}")
             self.driver.switch_to.window(current_window)
             return 'Không có bài viết mới'
-    
-    def open_same_tab(self, url):
-            # Lưu lại handle của cửa sổ hiện tại
-            current_window = self.driver.current_window_handle
-        
-            #đi đên đường link mới ở tab hiện tại
-            self.driver.get(url)
-        
-            # Đợi 5s
-            time.sleep(5)
-        
-            # Lấy nội dung HTML của trang web này
-            html = self.driver.page_source
-        
-            #chuyển đổi html sang soup
-            html = BeautifulSoup(html, 'html.parser')
-
-            #quay lại trang trước
-            self.driver.back()
-        
-            return html.get_text()
 
     def scroll_page(self, scrolls):
         #tạo một biến để lưu vị trí duyệt
@@ -155,13 +135,10 @@ class Scraper:
                                         # print('link:', 'https://www.facebook.com'+href)
                                     else:
                                         #Tạm dừng 2 tiếng
-                                        print('Tạm dừng 2 tiếng...')
-                                        #tạo một vòng lặp 8 lần, mỗi 15 phút lại in ra một lần
-                                        for i in range(6):
-                                            print('Thời gian còn lại:', 90-(i*15), 'phút')
-                                            #in ra thoiwf gian hieenj taij
-                                            print('Thời gian hiện tại:', time.strftime('%H:%M:%S'))
-                                            time.sleep(900)
+                                        print('Tạm dừng 30 phút...')
+                                        #in ra thoiwf gian hieenj taij
+                                        print('Thời gian hiện tại:', time.strftime('%H:%M:%S'))
+                                        time.sleep(1800)
                         
                     except Exception as e:
                         print(f"An error occurred: {e}")
