@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 import time
 import csv
+import remove_duplicates
 
 #tạo một class Scraper
 class Scraper:
@@ -131,6 +132,8 @@ class Scraper:
                                         with open(r'G:\My Drive\facebook_group_members_filter.csv', 'a', newline='', encoding='utf-8') as f:
                                             writer = csv.DictWriter(f, fieldnames=['name', 'link'], lineterminator='\n')
                                             writer.writerow({'name': aria_label, 'link': 'https://www.facebook.com'+href})
+                                        if member % 100 == 0:
+                                            remove_duplicates.remove_duplicates()
                                         # print('Thành viên:', aria_label, 'hợp lệ')
                                         # print('link:', 'https://www.facebook.com'+href)
                                     else:
