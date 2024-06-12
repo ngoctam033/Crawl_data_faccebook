@@ -103,7 +103,7 @@ class Scraper:
                 #sử dụng WebDriverWait và expected_conditions để chờ cho đến khi phần tử <a> xuất hiện
                 wait = WebDriverWait(self.driver, 10)
                 wait.until(EC.presence_of_element_located((By.TAG_NAME, 'a')))
-                # Tìm các thẻ a có thuộc tính data-visualcompletion='ignore-dynamic'
+                # Tìm các thẻ div có thuộc tính data-visualcompletion='ignore-dynamic'
                 members = self.driver.find_elements(By.XPATH, "//div[@data-visualcompletion='ignore-dynamic']")
                 #duyêt qua từng phần tử trong mảng members
                 for member in members[index:]:
